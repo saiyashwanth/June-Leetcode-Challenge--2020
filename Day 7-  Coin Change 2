@@ -1,0 +1,14 @@
+ class Solution {
+    public int change(int amount, int[] coins) {
+        int []cache=new int[amount+1];
+        cache[0]=1;
+        for(int coin:coins)
+         for(int i=coin;i<amount+1;i++)
+             cache[i]+=cache[i-coin];
+        
+        
+        return cache[amount];
+        
+        
+    }
+}
