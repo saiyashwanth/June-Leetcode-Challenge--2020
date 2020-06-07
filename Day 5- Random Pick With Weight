@@ -1,0 +1,32 @@
+  class Solution {
+   int []prefix;
+    int totalSum=0;
+    Random r=new Random();
+    public Solution(int[] w) {
+        prefix=new int[w.length];
+        for(int i=0;i<w.length;i++){
+            totalSum+=w[i];
+            prefix[i]=totalSum;
+      }
+    }
+    
+    public int pickIndex() {
+        int randomNum=r.nextInt(totalSum)+1;
+        int low=0,high=prefix.length-1,mid=0;
+        while(low<high){
+        mid=low+(high-low)/2;
+            if(randomNum>prefix[mid])
+                low=mid+1;
+            else
+                high=mid;
+        
+        }
+        return low;
+    }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(w);
+ * int param_1 = obj.pickIndex();
+ */
