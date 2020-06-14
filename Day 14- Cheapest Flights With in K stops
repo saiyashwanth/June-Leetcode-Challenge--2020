@@ -1,0 +1,14 @@
+ class Solution {
+    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+        long [][]cache=new long[K+2][n];
+        for(long[]d:cache)Arrays.fill(d,Integer.MAX_VALUE);
+        cache[0][src]=0;
+        for(int i=1;i<K+2;i++){
+         cache[i][src]=0;
+            for(int []f:flights)
+                cache[i][f[1]]=Math.min(cache[i][f[1]],cache[i-1][f[0]]+f[2]);
+        
+        }
+        return cache[K+1][dst]==Integer.MAX_VALUE?-1:(int)cache[K+1][dst];
+    }
+}
